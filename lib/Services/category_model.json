@@ -1,0 +1,52 @@
+{
+  "categories": [
+    {
+      "name": "Women Clothing",
+      "subcategory": [
+        "Wedding & Event",
+        "Tops & sets",
+        "Watches"
+      ]
+    },
+    {
+      "name": "Men Clothing & Fashion",
+      "subcategory": [
+        "Jackets",
+        "Formal Dress",
+        "Accessories"
+      ]
+    },
+    {
+      "name": "Computer & Accessories",
+      "subcategory": [
+        "Laptop",
+        "Gaming PC",
+        "Official Equipment"
+      ]
+    },
+    {
+      "name": "Sports",
+      "subcategory": [
+        "Football",
+         "Bat",
+        "Sports Kits"
+      ]
+    },
+    {
+      "name": "Jewelery",
+      "subcategory": [
+        "Neckless",
+        "Gold",
+        "Earring"
+      ]
+    },
+    {
+      "name": "Furniture",
+      "subcategory": [
+        "Sofa",
+        "Bed",
+        "Home Textile"
+      ]
+    }
+  ]
+}

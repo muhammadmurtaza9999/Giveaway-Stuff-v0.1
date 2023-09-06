@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "748905947811",
+    "project_id": "giveaway-839d2",
+    "storage_bucket": "giveaway-839d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748905947811:android:3c645bf1f6db595c6e9516",
+        "android_client_info": {
+          "package_name": "com.example.gas_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "748905947811-ki8fb1q73n3lm9p874ibhioi4kojev68.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gas_app",
+            "certificate_hash": "65ef9f6ee2918a02168914308f7e830fc00acec2"
+          }
+        },
+        {
+          "client_id": "748905947811-lh07oj2krper66960e01gpquvctb3csv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9iNdyKMsyq659kFDn1xGzqrHtKFSiXO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "748905947811-lh07oj2krper66960e01gpquvctb3csv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
