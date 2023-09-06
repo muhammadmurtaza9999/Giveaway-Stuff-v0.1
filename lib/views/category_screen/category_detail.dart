@@ -46,7 +46,9 @@ class CategoryDetails extends StatelessWidget {
           else {
 /////////////////////////////////////////////////////////////
             var data = snapshot.data!.docs;
+            // ignore: avoid_print
             print(data);
+            // print(data);
 //////////////////////////////////////////////////////////
             return Container(
               padding: const EdgeInsets.all(8),
