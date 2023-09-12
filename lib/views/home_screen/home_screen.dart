@@ -1,4 +1,4 @@
-import 'package:flutter_gas/Widgets_common/home_buttons.dart';
+import 'package:flutter_gas/views/widgets_common/home_buttons.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/consts/lists.dart';
 import 'components/featured_button.dart';

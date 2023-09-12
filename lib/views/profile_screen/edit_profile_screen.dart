@@ -3,9 +3,9 @@
 
 import 'dart:io';
 
-import 'package:flutter_gas/Widgets_common/bg_widget.dart';
-import 'package:flutter_gas/Widgets_common/custom_textfield.dart';
-import 'package:flutter_gas/Widgets_common/our_button.dart';
+import 'package:flutter_gas/views/widgets_common/bg_widget.dart';
+import 'package:flutter_gas/views/widgets_common/custom_textfield.dart';
+import 'package:flutter_gas/views/widgets_common/our_button.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/controllers/profile_controller.dart';
 import 'package:get/get.dart';

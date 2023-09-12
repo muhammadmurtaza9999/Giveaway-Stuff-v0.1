@@ -2,7 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gas/Services/firestore_services.dart';
-import 'package:flutter_gas/Widgets_common/bg_widget.dart';
+import 'package:flutter_gas/views/widgets_common/bg_widget.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/consts/lists.dart';
 import 'package:flutter_gas/controllers/auth_controller.dart';

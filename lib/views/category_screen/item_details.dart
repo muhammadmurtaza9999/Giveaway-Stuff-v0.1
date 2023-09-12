@@ -1,6 +1,6 @@
 // import 'dart:ffi';
 
-import 'package:flutter_gas/Widgets_common/our_button.dart';
+import 'package:flutter_gas/views/widgets_common/our_button.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/consts/lists.dart';
 import 'package:flutter_gas/controllers/product_controller.dart';

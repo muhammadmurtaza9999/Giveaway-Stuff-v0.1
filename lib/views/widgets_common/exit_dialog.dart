@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_gas/Widgets_common/our_button.dart';
+import 'package:flutter_gas/views/widgets_common/our_button.dart';
 import 'package:flutter_gas/consts/consts.dart';
 
 Widget exitDialog(context) {

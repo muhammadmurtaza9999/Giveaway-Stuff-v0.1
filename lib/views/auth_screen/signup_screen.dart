@@ -1,10 +1,10 @@
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/controllers/auth_controller.dart';
 import 'package:get/get.dart';
-import '../../Widgets_common/applogo_widget.dart';
-import '../../Widgets_common/bg_widget.dart';
-import '../../Widgets_common/custom_textfield.dart';
-import '../../Widgets_common/our_button.dart';
+import '../widgets_common/applogo_widget.dart';
+import '../widgets_common/bg_widget.dart';
+import '../widgets_common/custom_textfield.dart';
+import '../widgets_common/our_button.dart';
 import '../home_screen/home.dart';
 
 

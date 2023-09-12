@@ -1,4 +1,4 @@
-import 'package:flutter_gas/Widgets_common/exit_dialog.dart';
+import 'package:flutter_gas/views/widgets_common/exit_dialog.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/controllers/home_controller.dart';
 import 'package:flutter_gas/views/category_screen/category_screen.dart';

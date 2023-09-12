@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gas/Services/firestore_services.dart';
-import 'package:flutter_gas/Widgets_common/loading_indicator.dart';
+import 'package:flutter_gas/views/widgets_common/loading_indicator.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:get/get.dart';
 
-import '../../Widgets_common/our_button.dart';
+import '../widgets_common/our_button.dart';
 import '../../controllers/request_controller.dart';
 
 class RequestScreen extends StatelessWidget {
