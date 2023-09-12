@@ -4,6 +4,7 @@ import 'package:flutter_gas/Widgets_common/our_button.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/consts/lists.dart';
 import 'package:flutter_gas/controllers/product_controller.dart';
+import 'package:flutter_gas/views/chat_screen/chat_screen.dart';
 import 'package:get/get.dart';
 
 class ItemDetails extends StatelessWidget {
@@ -93,7 +94,7 @@ var controller = Get.find<ProductController>();
                     ),
                     10.heightBox,
                     "${data['p_price']}"
-                        .numCurrency.text.color(redColor).fontFamily(bold).make(),
+                        .numCurrency.text.color(redColor).fontFamily(bold).size(10).make(),
                     10.heightBox,
                     Row(
                       children: [
@@ -115,7 +116,9 @@ var controller = Get.find<ProductController>();
                         const CircleAvatar(
                           backgroundColor: Colors.white,
                           child: Icon(Icons.message_rounded, color: darkFontGrey),
-                        )
+                        ).onTap(() {
+                          Get.to(() => const ChatScreen());
+                        })
                       ],
                     )
                         .box
@@ -201,7 +204,8 @@ var controller = Get.find<ProductController>();
                                 width: 100,
                                 child: "Total: ".text.color(textfieldGrey).make(),
                               ),
-                              "${controller.totalPrice.value}".numCurrency
+                              "${controller.totalPrice.value}"
+                                  .numCurrency
                                   .text
                                   .color(redColor)
                                   .size(16)
