@@ -29,7 +29,7 @@ class ShippingDetails extends StatelessWidget {
             customTextField(hint: "City", isPass: false, title: "City"),
             customTextField(hint: "State", isPass: false, title: "State"),
             customTextField(hint: "Postal Code", isPass: false, title: "Postal Code"),
-            customTextField(hint: "Cell Phone", isPass: false, title: "Cell Phone"),
+            customTextField(hint: "Phone", isPass: false, title: "Phone"),
           ],
         ),
       ),
