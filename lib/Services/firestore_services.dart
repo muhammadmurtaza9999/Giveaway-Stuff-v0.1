@@ -21,4 +21,13 @@ class FirestoreServices {
     return firestore.collection(requestCollection).doc(docId).delete();
   }
 
+  //get all chat messages
+  static getChatMessages(docId) {
+    return firestore
+        .collection(chatsCollection)
+        .doc(docId)
+        .collection(messagesCollection)
+        .orderBy("created_on", descending: false)
+        .snapshots();
+  }
 }

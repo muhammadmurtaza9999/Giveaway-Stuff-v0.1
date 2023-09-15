@@ -30,11 +30,11 @@ class CategoryDetails extends StatelessWidget {
           body: StreamBuilder(
             stream: FirestoreServices.getProducts(title),
             // stream: FirebaseFireStore.instance.collection('Products').where('p_category', isEqualTo: title).get(title),
-// stream: FirebaseFirestore.instance.collection('products').where('p_category', isEqualTo: title).get(title),
             builder: (BuildContext context, AsyncSnapshot <QuerySnapshot> snapshot) {
               if(!snapshot.hasData){
                 return Center(
                   child: loadingIndicator(),
+                  
                 );
               }
               ///////////////////////////////////

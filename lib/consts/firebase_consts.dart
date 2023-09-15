@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -9,4 +8,6 @@ User? currentUser = auth.currentUser;
 //Collection
 const usersCollection = "users";
 const productsCollection = "products";
-const requestCollection = "request";
+const chatsCollection = 'chats';
+const messagesCollection = 'messages';
+const requestCollection = 'request';

@@ -17,7 +17,6 @@ class ItemDetails extends StatelessWidget {
 var controller = Get.find<ProductController>();
     // ignore: avoid_print
     // print(Colors.black.value);
-
     return WillPopScope(
       onWillPop: () async {
         controller.resetValue();
@@ -34,18 +33,16 @@ var controller = Get.find<ProductController>();
           ),
           title: title!.text.color(darkFontGrey).fontFamily(bold).make(),
           actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.share,
-                  color: darkFontGrey,
-                )),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite_outline,
-                  color: darkFontGrey,
-                )),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
+            IconButton(onPressed: () {
+              if (controller.isFav.value) {
+                controller.removeWishlist(data.id);
+                controller.isFav(false);
+              } else{
+                controller.addToWishlist(data.Id);
+                controller.isFav(true);
+              }
+            }, icon: const Icon(Icons.favorite_outline)),
           ],
         ),
         body: Column(
@@ -93,8 +90,7 @@ var controller = Get.find<ProductController>();
                       // stepInt: true,
                     ),
                     10.heightBox,
-                    "${data['p_price']}"
-                        .numCurrency.text.color(redColor).fontFamily(bold).size(10).make(),
+                    "${data['p_price']}".numCurrency.text.color(redColor).fontFamily(bold).size(10).make(),
                     10.heightBox,
                     Row(
                       children: [
@@ -117,15 +113,14 @@ var controller = Get.find<ProductController>();
                           backgroundColor: Colors.white,
                           child: Icon(Icons.message_rounded, color: darkFontGrey),
                         ).onTap(() {
-                          Get.to(() => const ChatScreen());
+                          Get.to(
+                                () => const ChatScreen(),
+                                arguments: [data['p_seller'], data['vendor_id']],
+                          );
                         })
                       ],
-                    )
-                        .box
-                        .height(60)
-                        .padding(const EdgeInsets.symmetric(horizontal: 16))
-                        .color(textfieldGrey)
-                        .make(),
+                    ).box.height(60).padding(const EdgeInsets.symmetric(horizontal: 16)).color(textfieldGrey).make(),
+
                     //color Section
                     20.heightBox,
                     Obx(
