@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gas/Services/firestore_services.dart';
+import 'package:flutter_gas/views/request_screen/shipping_screen.dart';
 import 'package:flutter_gas/views/widgets_common/loading_indicator.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,17 @@ class RequestScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: whiteColor,
+      bottomNavigationBar: SizedBox(
+        height: 60,
+        child: ourButton(
+          color: redColor,
+          onPress: () {
+            Get.to(() => const ShippingDetails());
+          },
+          textColor: whiteColor,
+          title: "Proceed to Shipping",
+        ),
+      ),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: "Stuff Wishlist".text
@@ -72,19 +84,26 @@ class RequestScreen extends StatelessWidget {
             Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-            "Total price".text.fontFamily(semibold).color(darkFontGrey).make(),
+            "Total price"
+                .text
+                .fontFamily(semibold)
+                .color(darkFontGrey)
+                .make(),
             Obx(() => "${controller.totalP.value}"
                 .numCurrency.text.fontFamily(semibold).color(redColor).make()),
             ],
             ).box.padding(const EdgeInsets.all(12)).color(lightGolden).width(context.screenWidth - 60)
         .roundedSM.make(),
     10.heightBox,
-    SizedBox(width: context.screenWidth - 60, child: ourButton(
-    color: redColor,
-    onPress: () {},
-    textColor: whiteColor,
-    title: "Proceed to Shipping",
-    )),
+    // SizedBox(
+    //     width: context.screenWidth - 60,
+    //     child: ourButton(
+    // color: redColor,
+    // onPress: () {},
+    // textColor: whiteColor,
+    // title: "Proceed to Shipping",
+    // ),
+    // ),
     ],
     ),
     );
