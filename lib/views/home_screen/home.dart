@@ -4,7 +4,7 @@ import 'package:flutter_gas/controllers/home_controller.dart';
 import 'package:flutter_gas/views/category_screen/category_screen.dart';
 import 'package:flutter_gas/views/home_screen/home_screen.dart';
 import 'package:flutter_gas/views/profile_screen/profile_screen.dart';
-import 'package:flutter_gas/views/order_screen/cart_screen.dart';
+import 'package:flutter_gas/views/cart_screen/cart_screen.dart';
 import 'package:get/get.dart';
 
 
@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
       BottomNavigationBarItem(
           icon: Image.asset(icCategories, width: 26), label: categories),
       BottomNavigationBarItem(
-          icon: Image.asset(icRequest, width: 26), label: order),
+          icon: Image.asset(icRequest, width: 26), label: cart),
       BottomNavigationBarItem(
           icon: Image.asset(icProfile, width: 26), label: account)
     ];

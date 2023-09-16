@@ -7,6 +7,7 @@ class FirestoreServices {
   }
 
   //get products according to category
+
   static getProducts(category) {
     return firestore.collection(productsCollection).where('p_category', isEqualTo: category).snapshots();
   }
@@ -30,4 +31,16 @@ class FirestoreServices {
         .orderBy("created_on", descending: false)
         .snapshots();
   }
+
+   static getAllOrders() {
+    return firestore.collection(ordersCollection).where('order_by', isEqualTo: currentUser!.uid).snapshots();
+   }
+
+   static getwishlists(){
+    return firestore.collection(productsCollection).where('p_wishlist', arrayContains: currentUser!.uid).snapshots();
+   }
+
+   static getAllmessages(){
+     return firestore.collection(chatsCollection).where('fromId', isEqualTo: currentUser!.uid).snapshots();
+   }
 }

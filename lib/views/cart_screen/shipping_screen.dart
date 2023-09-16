@@ -1,6 +1,6 @@
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/controllers/cart_controller.dart';
-import 'package:flutter_gas/views/order_screen/payment_method.dart';
+import 'package:flutter_gas/views/cart_screen/payment_method.dart';
 import 'package:flutter_gas/views/widgets_common/custom_textfield.dart';
 import 'package:flutter_gas/views/widgets_common/our_button.dart';
 import 'package:get/get.dart';

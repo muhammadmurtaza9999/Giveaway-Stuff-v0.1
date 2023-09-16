@@ -3,18 +3,18 @@ import 'package:flutter_gas/Services/firestore_services.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/views/widgets_common/loading_indicator.dart';
 
-class MessagesScreen extends StatelessWidget {
-  const MessagesScreen({super.key});
+class OrdersScreen extends StatelessWidget {
+  const OrdersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
-        title: "My Messages". text.color(darkFontGrey).fontFamily(semibold).make(),
+        title: "My Orders". text.color(darkFontGrey).fontFamily(semibold).make(),
       ),
       body: StreamBuilder(
-        stream: FirestoreServices.getAllmessages(),
+        stream: FirestoreServices.getAllOrders(),
 
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if(!snapshot.hasData) {
@@ -23,8 +23,9 @@ class MessagesScreen extends StatelessWidget {
             );
           } else if (snapshot.data!.docs.isEmpty){
             return
-              "No messages yet!".text.color(darkFontGrey).makeCentered();
+              "No orders yet!".text.color(darkFontGrey).makeCentered();
           }else{
+
             return Container();
           }
         },

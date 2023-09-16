@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gas/Services/firestore_services.dart';
-import 'package:flutter_gas/views/order_screen/shipping_screen.dart';
+import 'package:flutter_gas/views/cart_screen/shipping_screen.dart';
 import 'package:flutter_gas/views/widgets_common/loading_indicator.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:get/get.dart';
@@ -39,7 +39,6 @@ class OrderScreen extends StatelessWidget {
 
       body: StreamBuilder(
         stream: FirestoreServices.getOrder(currentUser!.uid),
-
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData){
             return Center(
@@ -64,7 +63,11 @@ class OrderScreen extends StatelessWidget {
                     itemCount: data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
-                        leading: Image.network("${data[index]['img']}"),
+                        leading: Image.network(
+                            "${data[index]['img']}",
+                                width: 80,
+                          fit: BoxFit.cover,
+                        ),
                         title: "${data[index]['title']} (x${data[index]['qty']})"
                           .text.fontFamily(semibold)
                           .size(16)

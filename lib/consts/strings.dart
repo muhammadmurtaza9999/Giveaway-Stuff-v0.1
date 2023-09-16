@@ -23,7 +23,7 @@ const alreadyHaveAccount = "Already have an account";
 //Home String
 const home = "Home",
     categories = "Categories",
-    order = "Order",
+    cart = "Cart",
     account = "Account";
 
 //home screen strings

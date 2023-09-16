@@ -46,14 +46,14 @@ class ProductController extends GetxController {
   }
 
   addToOrder({
-    title, img, sellername, color, qty, tprice, context
-}) async{
+    title, img, sellername, color, qty, tprice, context, vendorID}) async{
     await firestore.collection(orderCollection).doc().set({
       'title': title,
       'img': img,
       'sellername': sellername,
       'color': color,
       'qty': qty,
+      'vendor_id': vendorID,
       'tprice': tprice,
       'added_by': currentUser!.uid
     }).catchError((error) {
