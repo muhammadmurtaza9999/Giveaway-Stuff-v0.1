@@ -45,10 +45,10 @@ class ProductController extends GetxController {
     totalPrice.value = price * quantity.value;
   }
 
-  addToRequest({
+  addToOrder({
     title, img, sellername, color, qty, tprice, context
 }) async{
-    await firestore.collection(requestCollection).doc().set({
+    await firestore.collection(orderCollection).doc().set({
       'title': title,
       'img': img,
       'sellername': sellername,

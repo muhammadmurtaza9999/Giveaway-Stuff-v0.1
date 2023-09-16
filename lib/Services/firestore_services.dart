@@ -11,14 +11,14 @@ class FirestoreServices {
     return firestore.collection(productsCollection).where('p_category', isEqualTo: category).snapshots();
   }
 
-  //grt request
-  static getRequest(uid) {
-    return firestore.collection(requestCollection).where('added_by',isEqualTo: uid).snapshots();
+  //get order
+  static getOrder(uid) {
+    return firestore.collection(orderCollection).where('added_by',isEqualTo: uid).snapshots();
   }
 
   //delete Document
   static deleteDocument(docId) {
-    return firestore.collection(requestCollection).doc(docId).delete();
+    return firestore.collection(orderCollection).doc(docId).delete();
   }
 
   //get all chat messages

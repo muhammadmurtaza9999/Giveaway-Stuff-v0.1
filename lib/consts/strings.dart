@@ -23,7 +23,7 @@ const alreadyHaveAccount = "Already have an account";
 //Home String
 const home = "Home",
     categories = "Categories",
-    request = "Request",
+    order = "Order",
     account = "Account";
 
 //home screen strings
@@ -53,7 +53,6 @@ const womenClothing = "Women Clothing",
     // cellphone = "Cellphone & Tab",
     furniture = "Furniture";
 
-
 //item details string
 
 const video = "Video",
@@ -65,4 +64,12 @@ const video = "Video",
 
 //Profile String
 
-const wishlist = "My Wishlist", orders = "My Orders", messages = "Messages", oldpass = "Old Password", newpass = "New Password";
+const wishlist = "My Wishlist",
+    orders = "My Orders",
+    messages = "Messages",
+    oldpass = "Old Password",
+    newpass = "New Password";
+
+//payment methods string
+
+const paypal = "Paypal", stripe = "Stripe", cod = "cash on Delivery";

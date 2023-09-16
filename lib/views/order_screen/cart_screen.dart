@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gas/Services/firestore_services.dart';
-import 'package:flutter_gas/views/request_screen/shipping_screen.dart';
+import 'package:flutter_gas/views/order_screen/shipping_screen.dart';
 import 'package:flutter_gas/views/widgets_common/loading_indicator.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:get/get.dart';
 
 import '../widgets_common/our_button.dart';
-import '../../controllers/request_controller.dart';
+import '../../controllers/cart_controller.dart';
 
-class RequestScreen extends StatelessWidget {
-  const RequestScreen({super.key});
+class OrderScreen extends StatelessWidget {
+  const OrderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
 
-    var controller = Get.put(RequestController());
+    var controller = Get.put(OrderController());
 
     return Scaffold(
       backgroundColor: whiteColor,
@@ -31,14 +31,14 @@ class RequestScreen extends StatelessWidget {
       ),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: "Stuff Wishlist".text
+        title: "Shopping cart".text
             .color(darkFontGrey)
             .fontFamily(semibold)
             .make(),
       ),
 
       body: StreamBuilder(
-        stream: FirestoreServices.getRequest(currentUser!.uid),
+        stream: FirestoreServices.getOrder(currentUser!.uid),
 
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData){
@@ -48,12 +48,13 @@ class RequestScreen extends StatelessWidget {
           }
          //  else if (snapshot.data!.docs.isEmpty){
          //    return Center(
-         //    child: "Request is empty".text.color(darkFontGrey).make(),
+         //    child: "cart is empty".text.color(darkFontGrey).make(),
          //    );
          // }
           else {
             var data = snapshot.data!.docs;
             controller.calculate(data);
+            controller.productSnapshot = data;
             return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

@@ -311,7 +311,7 @@ var controller = Get.find<ProductController>();
               child: ourButton(
                 color: redColor,
                 onPress: () {
-                  controller.addToRequest(
+                  controller.addToOrder(
                     color: data['p_colors'][controller.colorIndex.value],
                     context: context,
                     img: data['p_imgs'][0],
@@ -319,10 +319,10 @@ var controller = Get.find<ProductController>();
                     sellername: data['p_seller'],
                     title: data['p_name'],
                     tprice: controller.totalPrice.value);
-                  VxToast.show(context, msg: "Added to Request");
+                  VxToast.show(context, msg: "Added to Order");
                 },
                 textColor: whiteColor,
-                title: "Add to Request",
+                title: "Add to Order",
               ),
             )
           ],

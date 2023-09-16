@@ -10,4 +10,6 @@ const usersCollection = "users";
 const productsCollection = "products";
 const chatsCollection = 'chats';
 const messagesCollection = 'messages';
-const requestCollection = 'request';
+const orderCollection = 'order';
+
+const ordersCollection = 'order';
