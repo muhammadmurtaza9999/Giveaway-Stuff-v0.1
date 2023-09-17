@@ -270,31 +270,18 @@ var controller = Get.find<ProductController>();
                             (index) => Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Image.asset(
-                                      imgP1,
-                                      width: 150,
-                                      fit: BoxFit.cover,
+                                    Image.asset(imgP1, width: 150, fit: BoxFit.cover,
                                     ),
                                     10.heightBox,
-                                    "Laptop 8GB/128GB"
-                                        .text
-                                        .fontFamily(semibold)
-                                        .color(darkFontGrey)
-                                        .make(),
+                                    "Laptop 8GB/128GB".text.fontFamily(semibold).color(darkFontGrey).make(),
                                     10.heightBox,
-                                    "Rs. 50,000"
-                                        .text
-                                        .color(redColor)
-                                        .fontFamily(bold)
-                                        .size(16)
-                                        .make(),
+                                    "Rs. 50,000".text.color(redColor).fontFamily(bold).size(16).make(),
                                     10.heightBox,
                                   ],
                                 )
                                     .box
                                     .white
-                                    .margin(
-                                        const EdgeInsets.symmetric(horizontal: 4))
+                                    .margin(const EdgeInsets.symmetric(horizontal: 4))
                                     .roundedSM
                                     .padding(const EdgeInsets.all(8))
                                     .make()),
@@ -311,16 +298,20 @@ var controller = Get.find<ProductController>();
               child: ourButton(
                 color: redColor,
                 onPress: () {
-                  controller.addToOrder(
-                    color: data['p_colors'][controller.colorIndex.value],
-                    context: context,
-                    vendorID: data['vendor_id'],
-                    img: data['p_imgs'][0],
-                    qty: controller.quantity.value,
-                    sellername: data['p_seller'],
-                    title: data['p_name'],
-                    tprice: controller.totalPrice.value);
-                  VxToast.show(context, msg: "Added to Order");
+                  if(controller.quantity.value > 0) {
+                    controller.addToOrder(
+                        color: data['p_colors'][controller.colorIndex.value],
+                        context: context,
+                        vendorID: data['vendor_id'],
+                        img: data['p_imgs'][0],
+                        qty: controller.quantity.value,
+                        sellername: data['p_seller'],
+                        title: data['p_name'],
+                        tprice: controller.totalPrice.value);
+                    VxToast.show(context, msg: "Added to Order");
+                  } else{
+                    VxToast.show(context, msg: "Quantity can't be selected");
+                  }
                 },
                 textColor: whiteColor,
                 title: "Add to Order",

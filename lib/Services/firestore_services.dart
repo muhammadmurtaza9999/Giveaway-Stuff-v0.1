@@ -43,4 +43,23 @@ class FirestoreServices {
    static getAllmessages(){
      return firestore.collection(chatsCollection).where('fromId', isEqualTo: currentUser!.uid).snapshots();
    }
+
+   static getCounts() async {
+    var res = await Future.wait([
+      firestore.collection(cart).where('added_by', isEqualTo: currentUser!.uid).get().then((value) {
+      // firestore.collection(cartCollection).where('added_by', isEqualTo: currentUser!.uid).get().then((value) {
+        return value.docs.length;
+      }),
+      firestore.collection(productsCollection).where('p_wishlist', arrayContains: currentUser!.uid).get().then((value) {
+        // firestore.collection(cartCollection).where('added_by', isEqualTo: currentUser!.uid).get().then((value) {
+        return value.docs.length;
+      }),
+      firestore.collection(ordersCollection).where('order_by', arrayContains: currentUser!.uid).get().then((value) {
+        // firestore.collection(cartCollection).where('added_by', isEqualTo: currentUser!.uid).get().then((value) {
+        return value.docs.length;
+      })
+    ]);
+    return res;
+   }
+   
 }

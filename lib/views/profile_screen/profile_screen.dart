@@ -11,6 +11,7 @@ import 'package:flutter_gas/controllers/auth_controller.dart';
 import 'package:flutter_gas/controllers/profile_controller.dart';
 import 'package:flutter_gas/views/auth_screen/login_screen.dart';
 import 'package:flutter_gas/views/profile_screen/edit_profile_screen.dart';
+import 'package:flutter_gas/views/widgets_common/loading_indicator.dart';
 import 'package:flutter_gas/views/wishlist_screen/wishlist_screen.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
       var controller = Get.put(ProfileController());
+      FirestoreServices.getCounts();
 
     return bgWidget(
       child: Scaffold(
@@ -91,24 +93,53 @@ class ProfileScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                    10.heightBox,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            detailsCard(
-                                count: data['cart-count'],
-                                title: "in your card",
-                                width: context.screenWidth / 3.4),
-                            detailsCard(
-                                count: data['wishlist-count'],
-                                title: "in your wishlist",
-                                width: context.screenWidth / 3.4),
-                            detailsCard(
-                                count: data['order-count'],
-                                title: "in your order",
-                                width: context.screenWidth / 3.4),
-                          ],
+                    20.heightBox,
+                        
+                        FutureBuilder(
+                            future: FirestoreServices.getCounts(),
+                            builder: (BuildContext context, AsyncSnapshot snapshot) {
+                              if (!snapshot.hasData) {
+                                return Center(child: loadingIndicator());
+                              } else {
+                                return Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    detailsCard(
+                                        count: data['cart-count'],
+                                        title: "in your card",
+                                        width: context.screenWidth / 3.3),
+                                    detailsCard(
+                                        count: data['wishlist-count'],
+                                        title: "in your wishlist",
+                                        width: context.screenWidth / 3.3),
+                                    detailsCard(
+                                        count: data['order-count'],
+                                        title: "in your order",
+                                        width: context.screenWidth / 3.3),
+                                  ],
+                                );
+                              }
+
+                            },
                         ),
+                        
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   children: [
+                        //     detailsCard(
+                        //         count: data['cart-count'],
+                        //         title: "in your card",
+                        //         width: context.screenWidth / 3.4),
+                        //     detailsCard(
+                        //         count: data['wishlist-count'],
+                        //         title: "in your wishlist",
+                        //         width: context.screenWidth / 3.4),
+                        //     detailsCard(
+                        //         count: data['order-count'],
+                        //         title: "in your order",
+                        //         width: context.screenWidth / 3.4),
+                        //   ],
+                        // ),
                         //buttons section
 
                         ListView.separated(
