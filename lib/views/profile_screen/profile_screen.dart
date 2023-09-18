@@ -24,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
       var controller = Get.put(ProfileController());
-      FirestoreServices.getCounts();
+      // FirestoreServices.getCounts();
 
     return bgWidget(
       child: Scaffold(
@@ -101,25 +101,25 @@ class ProfileScreen extends StatelessWidget {
                               if (!snapshot.hasData) {
                                 return Center(child: loadingIndicator());
                               } else {
+                                var countData = snapshot.data;
                                 return Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     detailsCard(
-                                        count: data['cart-count'],
+                                        count: countData[0].toString(),
                                         title: "in your card",
                                         width: context.screenWidth / 3.3),
                                     detailsCard(
-                                        count: data['wishlist-count'],
+                                        count: countData[1].toString(),
                                         title: "in your wishlist",
                                         width: context.screenWidth / 3.3),
                                     detailsCard(
-                                        count: data['order-count'],
+                                        count: countData[2].toString(),
                                         title: "in your order",
                                         width: context.screenWidth / 3.3),
                                   ],
                                 );
                               }
-
                             },
                         ),
                         

@@ -47,19 +47,24 @@ class FirestoreServices {
    static getCounts() async {
     var res = await Future.wait([
       firestore.collection(cart).where('added_by', isEqualTo: currentUser!.uid).get().then((value) {
+        ////////////////////Change After Fetch//////////////////////
       // firestore.collection(cartCollection).where('added_by', isEqualTo: currentUser!.uid).get().then((value) {
         return value.docs.length;
       }),
       firestore.collection(productsCollection).where('p_wishlist', arrayContains: currentUser!.uid).get().then((value) {
-        // firestore.collection(cartCollection).where('added_by', isEqualTo: currentUser!.uid).get().then((value) {
         return value.docs.length;
       }),
-      firestore.collection(ordersCollection).where('order_by', arrayContains: currentUser!.uid).get().then((value) {
-        // firestore.collection(cartCollection).where('added_by', isEqualTo: currentUser!.uid).get().then((value) {
+      firestore.collection(ordersCollection).where('order_by', isEqualTo: currentUser!.uid).get().then((value) {
         return value.docs.length;
       })
     ]);
     return res;
    }
-   
+
+   static allproducts() {
+    return firestore.collection(productsCollection).snapshots();
+   }
+
+   /////////home_screen.dart//////line:166////////
+  static getfeaturedProducts() {}
 }

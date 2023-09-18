@@ -1,6 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_gas/Services/firestore_services.dart';
+import 'package:flutter_gas/controllers/home_controller.dart';
+import 'package:flutter_gas/views/category_screen/item_details.dart';
 import 'package:flutter_gas/views/widgets_common/home_buttons.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/consts/lists.dart';
+import 'package:flutter_gas/views/widgets_common/loading_indicator.dart';
+import 'package:get/get.dart';
 import 'components/featured_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,6 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       padding: const EdgeInsets.all(12),
       color: lightGrey,
@@ -155,9 +162,18 @@ class HomeScreen extends StatelessWidget {
                         10.heightBox,
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
-                          child: Row(
+                          child: FutureBuilder(
+                            future: FirestoreServices.getfeaturedProducts(),
+                            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> featuredsnapshot) {
+                              if (!featuredsnapshot.hasData) {
+                                return Center(child: loadingIndicator());
+                              } else {
+                                // var featuredList = Get.find<HomeController>().fetchFeatured(featuredsnapshot.data!.docs);
+                                // print(featuredList);
+
+                          return Row(
                             children: List.generate(
-                                8,
+                                featuredsnapshot.data!.docs.length,
                                 (index) => Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -190,6 +206,9 @@ class HomeScreen extends StatelessWidget {
                                         .roundedSM
                                         .padding(const EdgeInsets.all(8))
                                         .make()),
+                          );
+                            }
+                            },
                           ),
                         ),
                       ],
@@ -217,50 +236,111 @@ class HomeScreen extends StatelessWidget {
                   //Third Swiper
                   //
                   //All Products Section
+                  /////////////////////////////////////////
+                  // 20.heightBox,
+                  // Align(
+                  //   alignment: Alignment.centerLeft,
+                  //   child: allproducts.text.fontFamily(bold).color(darkFontGrey).size(18).make()),
                   20.heightBox,
-                  GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 6,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 8,
-                              crossAxisSpacing: 8,
-                              mainAxisExtent: 300),
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              imgP5,
-                              height: 200,
-                              width: 200,
-                              fit: BoxFit.cover,
-                            ),
-                            const Spacer(),
-                            "Ladies Leather hand Bags"
-                                .text
-                                .fontFamily(semibold)
-                                .color(darkFontGrey)
-                                .make(),
-                            10.heightBox,
-                            "Rs. 600"
-                                .text
-                                .color(redColor)
-                                .fontFamily(bold)
-                                .size(16)
-                                .make(),
-                            10.heightBox,
-                          ],
-                        )
-                            .box
-                            .white
-                            .margin(const EdgeInsets.symmetric(horizontal: 4))
-                            .roundedSM
-                            .padding(const EdgeInsets.all(12))
-                            .make();
-                      }),
+                  StreamBuilder(
+                      stream: FirestoreServices.allproducts(),
+                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                          return loadingIndicator();
+                        } else {
+                          var allproductsdata = snapshot.data!.docs;
+                          return GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: allproductsdata.length,
+                              gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 8,
+                                  crossAxisSpacing: 8,
+                                  mainAxisExtent: 300),
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.network(
+                                      allproductsdata[index]['p_imgs'][0],
+                                      height: 200,
+                                      width: 200,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    const Spacer(),
+                                    "${allproductsdata[index]['p_name']}"
+                                        .text
+                                        .fontFamily(semibold)
+                                        .color(darkFontGrey)
+                                        .make(),
+                                    10.heightBox,
+                                    "${allproductsdata[index]['p_price']}"
+                                        .text
+                                        .color(redColor)
+                                        .fontFamily(bold)
+                                        .size(16)
+                                        .make(),
+                                    10.heightBox,
+                                  ],
+                                )
+                                    .box
+                                    .white
+                                    .margin(const EdgeInsets.symmetric(horizontal: 4))
+                                    .roundedSM
+                                    .padding(const EdgeInsets.all(12))
+                                    .make().onTap(() => ItemDetails(
+                                  title: "${allproductsdata[index]['p_name']}",
+                                  data: allproductsdata[index],
+                                ));
+                              });
+                        }
+                      }
+                  ),
+                  // GridView.builder(
+                  //     physics: const NeverScrollableScrollPhysics(),
+                  //     shrinkWrap: true,
+                  //     itemCount: 6,
+                  //     gridDelegate:
+                  //         const SliverGridDelegateWithFixedCrossAxisCount(
+                  //             crossAxisCount: 2,
+                  //             mainAxisSpacing: 8,
+                  //             crossAxisSpacing: 8,
+                  //             mainAxisExtent: 300),
+                  //     itemBuilder: (context, index) {
+                  //       return Column(
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: [
+                  //           Image.asset(
+                  //             imgP5,
+                  //             height: 200,
+                  //             width: 200,
+                  //             fit: BoxFit.cover,
+                  //           ),
+                  //           const Spacer(),
+                  //           "Ladies Leather hand Bags"
+                  //               .text
+                  //               .fontFamily(semibold)
+                  //               .color(darkFontGrey)
+                  //               .make(),
+                  //           10.heightBox,
+                  //           "Rs. 600"
+                  //               .text
+                  //               .color(redColor)
+                  //               .fontFamily(bold)
+                  //               .size(16)
+                  //               .make(),
+                  //           10.heightBox,
+                  //         ],
+                  //       )
+                  //           .box
+                  //           .white
+                  //           .margin(const EdgeInsets.symmetric(horizontal: 4))
+                  //           .roundedSM
+                  //           .padding(const EdgeInsets.all(12))
+                  //           .make();
+                  //     })
                   //All Products Section
                 ],
               ),
