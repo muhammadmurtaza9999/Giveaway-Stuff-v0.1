@@ -24,8 +24,8 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
       var controller = Get.put(ProfileController());
-      // FirestoreServices.getCounts();
-
+      FirestoreServices.getCounts();
+////////////////////////////////////////////////////
     return bgWidget(
       child: Scaffold(
         body: StreamBuilder(

@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_gas/Services/firestore_services.dart';
+// ignore: unused_import
 import 'package:flutter_gas/controllers/home_controller.dart';
 import 'package:flutter_gas/views/category_screen/item_details.dart';
 import 'package:flutter_gas/views/widgets_common/home_buttons.dart';
 import 'package:flutter_gas/consts/consts.dart';
 import 'package:flutter_gas/consts/lists.dart';
 import 'package:flutter_gas/views/widgets_common/loading_indicator.dart';
+// ignore: unused_import
 import 'package:get/get.dart';
 import 'components/featured_button.dart';
 
@@ -162,50 +164,71 @@ class HomeScreen extends StatelessWidget {
                         10.heightBox,
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
-                          child: FutureBuilder(
-                            future: FirestoreServices.getfeaturedProducts(),
-                            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> featuredsnapshot) {
-                              if (!featuredsnapshot.hasData) {
-                                return Center(child: loadingIndicator());
-                              } else {
-                                // var featuredList = Get.find<HomeController>().fetchFeatured(featuredsnapshot.data!.docs);
-                                // print(featuredList);
-
-                          return Row(
+                          child:
+    // FutureBuilder(
+    //                         future: FirestoreServices.getfeaturedProducts(),
+    //                         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> featuredsnapshot) {
+    //                           if (!featuredsnapshot.hasData) {
+    //                             return Center(child: loadingIndicator());
+    //                           } else {
+    //                             /////////////////////////
+    //
+    //                             // var featuredList = Get.find<HomeController>().fetchFeatured(featuredsnapshot.data!.docs);
+    //                             // print(featuredList);
+    //                             ///////////////////////////////////
+    //                       return
+                                    FutureBuilder(
+                                        future: FirestoreServices.getFeaturedProducts(),
+                                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: loadingIndicator(),
+                                            );
+                                          }
+                                          else if (snapshot.data!.docs.isEmpty) {
+                                            return "No Features Products".text.white.makeCentered();
+                                          }
+                                          else {
+                                            var featuredData = snapshot.data!.docs;
+                                    return Row(
                             children: List.generate(
-                                featuredsnapshot.data!.docs.length,
-                                (index) => Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Image.asset(
-                                          imgP1,
-                                          width: 150,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        10.heightBox,
-                                        "Laptop 8GB/128GB"
-                                            .text
-                                            .fontFamily(semibold)
-                                            .color(darkFontGrey)
-                                            .make(),
-                                        10.heightBox,
-                                        "Rs. 50,000"
-                                            .text
-                                            .color(redColor)
-                                            .fontFamily(bold)
-                                            .size(16)
-                                            .make(),
-                                        10.heightBox,
-                                      ],
-                                    )
-                                        .box
-                                        .white
-                                        .margin(const EdgeInsets.symmetric(
-                                            horizontal: 4))
-                                        .roundedSM
-                                        .padding(const EdgeInsets.all(8))
-                                        .make()),
+                                featuredData.length,
+                              // 6,
+                                    // featuredsnapshot.data!.docs.length,
+                                    (index) => Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Image.network(
+                                              featuredData[index]['p_imgs'][0],
+                                              width: 130,
+                                              height: 130,
+                                              fit: BoxFit.cover,
+                                            ),
+                                            10.heightBox,
+                                            "${featuredData[index]['p_name']}"
+                                                .text
+                                                .fontFamily(semibold)
+                                                .color(darkFontGrey)
+                                                .make(),
+                                            10.heightBox,
+                                            "${featuredData[index]['p_price']}"
+                                            .numCurrency
+                                                .text
+                                                .color(redColor)
+                                                .fontFamily(bold)
+                                                .size(16)
+                                                .make(),
+                                            10.heightBox,
+                                          ],
+                                        )
+                                            .box
+                                            .white
+                                            .margin(const EdgeInsets.symmetric(
+                                                horizontal: 4))
+                                            .roundedSM
+                                            .padding(const EdgeInsets.all(8))
+                                            .make()),
                           );
                             }
                             },

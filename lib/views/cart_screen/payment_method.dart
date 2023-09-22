@@ -30,6 +30,7 @@ class PaymentMethods extends StatelessWidget {
                   orderPaymentMethod: paymentMethods[controller.paymentIndex.value],
                   totalAmount: controller.totalP.value);
               await controller.clearCart();
+              // ignore: use_build_context_synchronously
               VxToast.show(context, msg: "Order placed successfully");
 
               Get.offAll(const Home());

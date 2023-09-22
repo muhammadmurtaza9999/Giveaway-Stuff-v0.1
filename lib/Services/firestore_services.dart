@@ -65,6 +65,9 @@ class FirestoreServices {
     return firestore.collection(productsCollection).snapshots();
    }
 
+   //////////////////get Featured////////////
    /////////home_screen.dart//////line:166////////
-  static getfeaturedProducts() {}
+  static getFeaturedProducts() {
+    return firestore.collection(productsCollection).where('is_featured', isEqualTo: true).get();
+  }
 }
