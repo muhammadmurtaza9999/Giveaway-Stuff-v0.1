@@ -21,7 +21,8 @@ class CategoryDetails extends StatelessWidget {
     /////////////////////////////////////
 
     // ignore: prefer_typing_uninitialized_variables, non_constant_identifier_names
-    // var FirebaseFireStore;
+    // var FirebaseFirestore;
+    // var FirebaseFirestore db = FirebaseFirestore.getInstance();
     return bgWidget(
         child: Scaffold(
           appBar: AppBar(
@@ -29,7 +30,7 @@ class CategoryDetails extends StatelessWidget {
           ),
           body: StreamBuilder(
             stream: FirestoreServices.getProducts(title),
-            // stream: FirebaseFireStore.instance.collection('Products').where('p_category', isEqualTo: title).get(title),
+            // stream: FirebaseFirestore.instance.collection('Products').where('p_category', isEqualTo: title).get(title),
             builder: (BuildContext context, AsyncSnapshot <QuerySnapshot> snapshot) {
               if(!snapshot.hasData){
                 return Center(

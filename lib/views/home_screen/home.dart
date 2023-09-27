@@ -7,8 +7,6 @@ import 'package:flutter_gas/views/profile_screen/profile_screen.dart';
 import 'package:flutter_gas/views/cart_screen/cart_screen.dart';
 import 'package:get/get.dart';
 
-
-
 class Home extends StatelessWidget {
   const Home({Key? key}) :super(key: key);
 
